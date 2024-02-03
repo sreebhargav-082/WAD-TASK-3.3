@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            font-size: 18px;
+        }
+
+        #calculator-container {
+            max-width: 400px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div id="calculator-container">
+    <input type="number" id="num1" placeholder="Enter the first number">
+    <select id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="number" id="num2" placeholder="Enter the second number">
+    <button onclick="calculate()">Calculate</button>
+    <p id="result-message"></p>
+</div>
+
+<script>
+    function calculate() {
+        // Get user's input
+        var num1 = parseFloat(document.getElementById("num1").value);
+        var num2 = parseFloat(document.getElementById("num2").value);
+        var operator = document.getElementById("operator").value;
+
+        // Perform the calculation
+        var result;
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                if (num2 !== 0) {
+                    result = num1 / num2;
+                } else {
+                    document.getElementById("result-message").textContent = "Cannot divide by zero!";
+                    return;
+                }
+                break;
+            default:
+                document.getElementById("result-message").textContent = "Invalid operator!";
+                return;
+        }
+
+        // Display the result
+        document.getElementById("result-message").textContent = "Result: " + result;
+    }
+</script>
+
+</body>
+</html>
